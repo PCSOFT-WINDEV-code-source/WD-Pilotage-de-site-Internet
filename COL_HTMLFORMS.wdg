@@ -1,0 +1,87 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : COL_HTMLFORMS
+ major_version : 28
+ minor_version : 0
+ type : 7
+ description : ""
+ subtype : 0
+procedure_set :
+ identifier : 0x1faaa62e0007ff32
+ internal_properties : CAAAAAgAAABGLu41kG7fjQV3iS4F72qmnKaNh5694reolNKIW0iw
+ code_elements :
+  type_code : 31
+  p_codes :
+   -
+     code : |1+
+      
+      __Cache est un tableau associatif de htmlDocuments
+     type : 720896
+  procedures :
+   -
+     name : HTMLChercheFormulaire
+     internal_properties : CAAAAAgAAADuX8EKt2L2BSJ0ddzbzf9o8KfyvwJBpfT1OcQoPE0ohep1tXuLXW0s9SBVXWR87i8InbFSKnooj848Qb2sr44BnFp6w90z4oUCxXNAgF80SdabEinu+c6j4Ym+LXDPHNteI7UYnzS/IKFiytE1
+     procedure_id : 2281818907780586294
+     type_code : 15
+     code : |1-
+      // Résumé : Renvoie la liste des formulaires
+      // Syntaxe :
+      //[ <Résultat> = ] HTMLChercheFormulaire (<ChampHTML> est champ)
+      //
+      // Paramètres :
+      //	ChampHTML (champ) : Champ HTML
+      // Valeur de retour :
+      // 	tableau : Liste des formulaires
+      //
+      procédure HTMLChercheFormulaire( ChampHTML est un champ ) : tableau de htmlNoeuds
+      
+      	// Récupère le document HTML affiché
+      	htmlDoc est un htmldocument <- ChampHTML..Document
+      	
+      	// Récupère la liste des formulaires
+      	tabFormulaires est un tableau de htmlNoeuds = HTMLChercheElémentParBalise( htmlDoc.html.body, "form" )
+      		
+      renvoyer tabFormulaires
+     type : 458752
+   -
+     name : HTMLListeChampsFormulaire
+     internal_properties : CAAAAAgAAACM14BE28anHJm0gd0LUTnn5bc6fZiUWbHrYs64PLDaclcy+iUpHQs856HNNzP2dEIMFJNParmejcg9fgpQcas1fmuHNyV85/z2nPi9PS+pnwCAPW/WLIAKvDzuWaLyuocc28R3289fN704voEiVW/OHMPhM2ArTRE+7pS8iyW1G5ac
+     procedure_id : 2281821587840278507
+     type_code : 15
+     code : |1-
+      // Résumé : Renvoie la liste des champs de formulaire
+      // Syntaxe :
+      //[ <Résultat> = ] HTMLListeChampsFormulaire (<ChampHTML> est champ, <htmlForm> est htmlNoeud)
+      //
+      // Paramètres :
+      //	ChampHTML (champ) : Champ HTML
+      //	htmlForm (htmlNoeud) : Nom du formulaire
+      // Valeur de retour :
+      // 	tableau : Liste des champs de formulaire 
+      //
+      procédure HTMLListeChampsFormulaire( ChampHTML est un champ, htmlForm est un htmlnoeud ) : tableau de htmlNoeuds
+      	
+      	htmlDoc est un htmlDocument <- ChampHTML..Document
+      	
+      	// Récupère la liste des champs de formulaires dans le formulaire spécifié
+      	tabChamps est un tableau de htmlNoeuds = HTMLChercheElémentParBalise( htmlForm, "input" )
+      	tabChamps.Ajoute( HTMLChercheElémentParBalise( htmlForm, "textarea" ) )
+      	tabChamps.Ajoute( HTMLChercheElémentParBalise( htmlForm, "select" ) )
+      	
+      	// Elimine les input type="image"
+      	tabChamps = tabChamps.Filtre( htmlChamp => htmlChamp:type..Valeur <> "image" )
+      	
+      renvoyer tabChamps	
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+  original_name : COL_SansNom1
+resources :
+ string_res :
+  identifier : 0x1faaa62a0005f0ea
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ
